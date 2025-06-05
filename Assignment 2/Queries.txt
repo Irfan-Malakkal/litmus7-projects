@@ -65,7 +65,7 @@ INSERT INTO OrderDetails VALUES
 
 -- Basic Queries
 -- Get the list of all customers.
-SELECT * FROM Orders;
+SELECT * FROM Customers;
 
 -- Find all orders placed in the last 30 days.
 SELECT * FROM Orders 
