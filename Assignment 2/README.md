@@ -75,7 +75,7 @@ INSERT INTO OrderDetails VALUES
 ```sql
 -- Get the list of all customers.
 SELECT * 
-FROM Orders;
+FROM Customers;
 
 -- Find all orders placed in the last 30 days.
 SELECT * 
