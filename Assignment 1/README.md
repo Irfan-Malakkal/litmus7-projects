@@ -1,3 +1,5 @@
+![ER.png](ER.png)
+
 ```sql
 CREATE TABLE students(
     student_id INT PRIMARY KEY,
