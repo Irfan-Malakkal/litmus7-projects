@@ -2,71 +2,93 @@
 
 ```sql
 CREATE TABLE Customers(
-	CustomerID INT PRIMARY KEY,
+	CustomerID INT PRIMARY KEY AUTO_INCREMENT,
 	Name VARCHAR(100) NOT NULL,
-	Email VARCHAR(100) UNIQUE,
-	City VARCHAR(50),
-	SignupDate DATE
+	Email VARCHAR(150) NOT NULL UNIQUE,
+	City VARCHAR(100) NOT NULL,
+	SignupDate DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE Orders(
-	OrderID INT PRIMARY KEY,
+	OrderID INT PRIMARY KEY AUTO_INCREMENT,
 	CustomerID INT NOT NULL,
-	OrderDate DATE,
-	TotalAmount DECIMAL(10,2),
-	FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE SET NULL
+	OrderDate DATE NOT NULL DEFAULT CURRENT_DATE,
+	TotalAmount DECIMAL(10,2) NOT NULL CHECK(TotalAmount >=0),
+	CONSTRAINT fk_orders_customer FOREIGN KEY (CustomerID) 
+        REFERENCES Customers(CustomerID) 
+        ON DELETE SET NULL
 );
 
 CREATE TABLE Products(
-    ProductID INT PRIMARY KEY,
+    ProductID INT PRIMARY KEY AUTO_INCREMENT,
     ProductName VARCHAR(100) NOT NULL,
-    Category VARCHAR(50),
-    Price DECIMAL(10,2)
+    Category VARCHAR(50) NOT NULL,
+    Price DECIMAL(10,2) NOT NULL CHECK(Price >=0)
 );
 
 CREATE TABLE OrderDetails(
-    OrderDetailID INT PRIMARY KEY,
+    OrderDetailID INT PRIMARY KEY AUTO_INCREMENT,
     OrderID INT NOT NULL,
     ProductID INT NOT NULL,
-    Quantity INT,
-    Price DECIMAL(10,2),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE SET NULL,
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE SET NULL
+    Quantity INT NOT NULL DEFAULT 1 CHECK (Quantity > 0),
+    Price DECIMAL(10,2) NOT NULL CHECK(Price >=0),
+    CONSTRAINT fk_orderdetails_order FOREIGN KEY (OrderID) 
+        REFERENCES Orders(OrderID) 
+        ON DELETE SET NULL,
+    CONSTRAINT fk_orderdetails_product FOREIGN KEY (ProductID) 
+        REFERENCES Products(ProductID) 
+        ON DELETE SET NULL
 );
+```
+
+## Indexing
+```sql
+CREATE INDEX idx_customers_city ON Customers(City);
+CREATE INDEX idx_customers_signupdate ON Customers(SignupDate);
+
+CREATE INDEX idx_orders_totalamount ON Orders(TotalAmount);
+
+CREATE INDEX idx_products_category ON Products(Category);
+CREATE INDEX idx_products_productname ON Products(ProductName);
+
+CREATE INDEX idx_orderdetails_price ON OrderDetails(Price);
+
+CREATE INDEX idx_orderdetails_productid_orderid ON OrderDetails(ProductID, OrderID);
+CREATE INDEX idx_orders_customerid_totalamount ON Orders(CustomerID, TotalAmount);
 ```
 
 ## Sample Data Insertion
 
 ```sql
-INSERT INTO Customers VALUES
-    (1, 'Alice Johnson', 'alice@example.com', 'New York', '2024-12-15'),
-    (2, 'Bob Smith', 'bob@example.com', 'Mumbai', '2025-01-10'),
-    (3, 'Charlie Lee', 'charlie@example.com', 'Delhi', '2024-11-05'),
-    (4, 'David Kim', 'david@example.com', 'Mumbai', '2023-03-20'),
-    (5, 'Eva Green', 'eva@example.com', 'London', '2025-05-01');
+INSERT INTO Customers (Name, Email, City, SignupDate) VALUES
+    ('Alice Johnson', 'alice@example.com', 'New York', '2024-12-15'),
+    ('Bob Smith', 'bob@example.com', 'Mumbai', '2025-01-10'),
+    ('Charlie Lee', 'charlie@example.com', 'Delhi', '2024-11-05'),
+    ('David Kim', 'david@example.com', 'Mumbai', '2023-03-20'),
+    ('Eva Green', 'eva@example.com', 'London', '2025-05-01');
 
-INSERT INTO Products VALUES
-    (101, 'Laptop', 'Electronics', 95000.00),
-    (102, 'Phone', 'Electronics', 30000.00),
-    (103, 'Desk', 'Furniture', 12000.00),
-    (104, 'Chair', 'Furniture', 8000.00),
-    (105, 'Pen', 'Stationery', 10.00),
-    (106, 'Notebook', 'Stationery', 50.00);
+INSERT INTO Products (ProductName, Category, Price) VALUES
+    ('Laptop', 'Electronics', 95000.00),
+    ('Phone', 'Electronics', 30000.00),
+    ('Desk', 'Furniture', 12000.00),
+    ('Chair', 'Furniture', 8000.00),
+    ('Pen', 'Stationery', 10.00),
+    ('Notebook', 'Stationery', 50.00);
 
-INSERT INTO Orders VALUES
-    (1001, 1, '2025-04-10', 95000.00),
-    (1002, 2, '2025-05-15', 40000.00),
-    (1003, 2, '2025-06-01', 12000.00),
-    (1004, 3, '2025-05-20', 10010.00),
-    (1005, 4, '2025-04-01', 10.00);
+INSERT INTO Orders (CustomerID, OrderDate, TotalAmount) VALUES
+    (1, '2025-04-10', 95000.00),
+    (2, '2025-05-15', 40000.00),
+    (2, '2025-06-01', 12000.00),
+    (3, '2025-05-20', 10010.00),
+    (4, '2025-04-01', 10.00);
 
-INSERT INTO OrderDetails VALUES
-    (1, 1001, 101, 1, 95000.00),
-    (2, 1002, 102, 1, 30000.00),
-    (3, 1002, 103, 1, 10000.00),
-    (4, 1003, 104, 1, 12000.00),
-    (5, 1004, 105, 1, 10.00),
-    (6, 1005, 105, 1, 10.00);
+INSERT INTO OrderDetails (OrderID, ProductID, Quantity, Price) VALUES
+    (1, 1, 1, 95000.00), 
+    (2, 2, 1, 30000.00),  
+    (2, 3, 1, 10000.00),  
+    (3, 4, 1, 12000.00),  
+    (4, 5, 1, 10.00),     
+    (5, 5, 1, 10.00);     
 ```
 
 ## Queries
@@ -74,11 +96,11 @@ INSERT INTO OrderDetails VALUES
 ### Basic Queries
 ```sql
 -- Get the list of all customers.
-SELECT * 
+SELECT CustomerID, Name 
 FROM Customers;
 
 -- Find all orders placed in the last 30 days.
-SELECT * 
+SELECT OrderID, CustomerID, OrderDate 
 FROM Orders 
 WHERE OrderDate >= CURDATE() - INTERVAL 30 DAY;
 
@@ -95,17 +117,17 @@ GROUP BY Category;
 ### Filtering and Conditions
 ```sql
 -- Get all customers from the city 'Mumbai'.
-SELECT *
+SELECT Name, City
 FROM Customers
 WHERE City = 'Mumbai';
 
 -- Find orders with a total amount greater than ₹5000.
-SELECT *
+SELECT OrderID, TotalAmount
 FROM Orders
 WHERE TotalAmount > 5000;
 
 -- List customers who signed up after '2024-01-01'.
-SELECT *
+SELECT CustomerID, Name, SignupDate
 FROM Customers
 WHERE SignupDate >= '2024-01-01';
 ```
@@ -113,7 +135,7 @@ WHERE SignupDate >= '2024-01-01';
 ### Joins
 ```sql
 -- Show all orders along with the customer's name.
-SELECT Orders.*, Customers.Name AS CustomerName
+SELECT Orders.OrderId, Customers.Name AS CustomerName
 FROM Orders
 LEFT JOIN Customers
 ON Orders.CustomerID=Customers.CustomerID;
@@ -181,7 +203,7 @@ HAVING SUM(O.TotalAmount) > (
 SELECT ProductID, ProductName
 FROM Products
 WHERE ProductID NOT IN( 
-	SELECT ProductID
+	SELECT DISTINCT ProductID
     FROM OrderDetails
 );
 
