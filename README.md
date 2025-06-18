@@ -5,7 +5,7 @@
 > 🔹 **Purpose:** Design a student enrollment database using SQL DDL commands.  
 > 🔹 **Focus:** Database schema creation.
 
-----
+---
 
 ### Assignment 2 – RetailDB
 > 🔹 **Purpose:** Build and manipulate a retail database using DDL and DML commands.  
