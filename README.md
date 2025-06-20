@@ -18,3 +18,9 @@
 > 🔹 **Focus:** Object-oriented programming and console I/O.
 
 ---
+
+### Assignment 4 – Java VehicleApp
+> 🔹 **Purpose:** Create a Java application to handle vehicle rental system.  
+> 🔹 **Focus:** Object-oriented programming, Inheritance and console Constructors.
+
+---
