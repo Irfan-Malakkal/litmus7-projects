@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.litmus7.rental;
+package com.litmus7.vehiclerental;
 
-import com.litmus7.rental.dto.*;
+import com.litmus7.vehiclerental.dto.*;
 
 /**
  * This class serves as the entry point for the vehicle rental application.

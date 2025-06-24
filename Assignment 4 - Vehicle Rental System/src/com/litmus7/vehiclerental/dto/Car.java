@@ -1,4 +1,4 @@
-package com.litmus7.rental.dto;
+package com.litmus7.vehiclerental.dto;
 
 import java.util.Scanner;
 
