@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.litmus7.rentalvehicle"},{"l":"com.litmus7.rentalvehicle.dto"},{"l":"com.litmus7.rentalvehicle.service"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.litmus7.rentalvehicle.controller"},{"l":"com.litmus7.rentalvehicle.dao"},{"l":"com.litmus7.rentalvehicle.dto"},{"l":"com.litmus7.rentalvehicle.exceptions"},{"l":"com.litmus7.rentalvehicle.service"},{"l":"com.litmus7.rentalvehicle.ui"}];updateSearchResults();

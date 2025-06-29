@@ -1,3 +1,6 @@
-com.litmus7.rentalvehicle
+com.litmus7.rentalvehicle.controller
+com.litmus7.rentalvehicle.dao
 com.litmus7.rentalvehicle.dto
+com.litmus7.rentalvehicle.exceptions
 com.litmus7.rentalvehicle.service
+com.litmus7.rentalvehicle.ui
