@@ -51,9 +51,9 @@ public class VehicleDAO {
 					vehicles.add(vehicle);
 			}
 		} catch (FileNotFoundException e) {
-			throw new VehicleDataAccessException("Data Couldn't Load", e);
+			throw new VehicleDataAccessException("Couldn't load data from :"+ filePath, e);
 		} catch (IOException e) {
-			throw new VehicleDataAccessException("Data Couldn't Load", e);
+			throw new VehicleDataAccessException("Couldn't load data from :"+ filePath, e);
 		}
 
 		return vehicles;
