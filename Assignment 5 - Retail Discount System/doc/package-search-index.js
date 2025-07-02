@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.litmus7.retaildiscount"},{"l":"com.litmus7.retaildiscount.controller"},{"l":"com.litmus7.retaildiscount.dto"},{"l":"com.litmus7.retaildiscount.exceptions"},{"l":"com.litmus7.retaildiscount.service"}];updateSearchResults();

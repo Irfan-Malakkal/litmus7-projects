@@ -1,0 +1,5 @@
+com.litmus7.retaildiscount
+com.litmus7.retaildiscount.controller
+com.litmus7.retaildiscount.dto
+com.litmus7.retaildiscount.exceptions
+com.litmus7.retaildiscount.service
