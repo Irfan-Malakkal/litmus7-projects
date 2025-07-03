@@ -24,3 +24,9 @@
 > 🔹 **Focus:** Object-oriented programming, Inheritance and console Constructors.
 
 ---
+
+### Assignment 5 - Java RetailDiscountApp
+> 🔹 **Purpose:** Create a Java application to apply discounts to customers based on their type.  
+> 🔹 **Focus:** Interface, Generic class and exception.
+
+---
