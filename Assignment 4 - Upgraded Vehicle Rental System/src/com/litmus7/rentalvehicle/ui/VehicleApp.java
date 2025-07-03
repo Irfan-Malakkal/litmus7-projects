@@ -54,7 +54,7 @@ public class VehicleApp {
 	public static void main(String[] args) {
 
 		// Instantiate the controller
-		VehicleController controller = new VehicleController();
+		VehicleController vehicleController = new VehicleController();
 
 		// Response objects to hold results of various operations
 		Response<String> loadVehicleResponse = new Response<>();
@@ -65,7 +65,7 @@ public class VehicleApp {
 
 		// Load vehicles from a file
 		System.out.println("Loading vehicles from file...\n");
-		loadVehicleResponse = controller.loadVehiclesFromFile("vehicles.txt");
+		loadVehicleResponse = vehicleController.loadVehiclesFromFile("vehicles.txt");
 		if (loadVehicleResponse.getStatusCode() == 200) {
 			System.out.println(loadVehicleResponse.getData());
 		} else {
@@ -73,7 +73,7 @@ public class VehicleApp {
 		}
 
 		// Add a new vehicle (Car) manually
-		addVehicleResponse = controller.addCar("Tesla", "Model 3", 80.0, 4, true);
+		addVehicleResponse = vehicleController.addCar("Tesla", "Model 3", 80.0, 4, true);
 		if (addVehicleResponse.getStatusCode() == 200) {
 			System.out.println("\n" + addVehicleResponse.getData() + "\nAdded succesfully");
 		} else {
@@ -82,11 +82,11 @@ public class VehicleApp {
 
 		// Display all vehicles
 		System.out.println("\n------------All loaded vehicles------------\n");
-		printVehicles(controller.getAllVehicles());
+		printVehicles(vehicleController.getAllVehicles());
 
 		// Simulate renting the newly added vehicle
 		System.out.println("\n--- Renting a vehicle(Direct) ---");
-		rentVehicleResponse = controller.rentVehicle(addVehicleResponse.getData());
+		rentVehicleResponse = vehicleController.rentVehicle(addVehicleResponse.getData());
 		System.out.println("Vehicle rented: " + rentVehicleResponse.getData());
 
 		// For renting another vehicle
@@ -96,9 +96,9 @@ public class VehicleApp {
 		System.out.println("Brand : " + brand + "\nModel : " + model);
 
 		// Search and rent the specified vehicle
-		searchVehicleResponse = controller.searchVehicle(brand, model);
+		searchVehicleResponse = vehicleController.searchVehicle(brand, model);
 		if (searchVehicleResponse.getStatusCode() == 200) {
-			rentVehicleResponse = controller.rentVehicle(searchVehicleResponse.getData());
+			rentVehicleResponse = vehicleController.rentVehicle(searchVehicleResponse.getData());
 			if (rentVehicleResponse.getStatusCode() == 200) {
 				System.out.println("Vehicle rented: " + rentVehicleResponse.getData());
 			} else {
@@ -110,11 +110,11 @@ public class VehicleApp {
 
 		// Display available vehicles after renting
 		System.out.println("\n--- Available Vehicles After Renting ---");
-		printVehicles(controller.getAvailableVehicles());
+		printVehicles(vehicleController.getAvailableVehicles());
 
 		// Return previously rented vehicle
 		System.out.println("\n--- Returning the vehicle ---");
-		returnVehicleResponse = controller.returnVehicle(addVehicleResponse.getData());
+		returnVehicleResponse = vehicleController.returnVehicle(addVehicleResponse.getData());
 		if (returnVehicleResponse.getStatusCode() == 200) {
 			System.out.println("Vehicle Returned: " + returnVehicleResponse.getData());
 		} else {
@@ -123,7 +123,7 @@ public class VehicleApp {
 
 		// Display available vehicles after returning
 		System.out.println("\n--- Available Vehicles After Returning ---");
-		printVehicles(controller.getAvailableVehicles());
+		printVehicles(vehicleController.getAvailableVehicles());
 
 	}
 }

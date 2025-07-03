@@ -27,7 +27,7 @@ public class RetailStoreController {
 	public static final int ERROR_CODE = 400;
 
 	// Service Layer Instance
-	private RetailStoreService service = new RetailStoreService();
+	private RetailStoreService reatailStoreService = new RetailStoreService();
 
 	/**
      * Processes a discount request based on customer type and total purchase amount.
@@ -42,7 +42,7 @@ public class RetailStoreController {
 		Response<String> response = new Response<>();
 		if (totalAmount > 0) {
 			try {
-				response.setData(service.processDiscount(customerType, totalAmount));
+				response.setData(reatailStoreService.processDiscount(customerType, totalAmount));
 				response.setStatusCode(SUCCESS_CODE);
 			} catch (RetailServiceException e) {
 				response.setStatusCode(ERROR_CODE);

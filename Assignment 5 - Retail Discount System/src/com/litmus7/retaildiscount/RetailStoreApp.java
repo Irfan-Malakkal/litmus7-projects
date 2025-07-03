@@ -23,7 +23,7 @@ public class RetailStoreApp {
 	public static void main(String[] args) {
 
 		// Initialize controller
-		RetailStoreController controller = new RetailStoreController();
+		RetailStoreController retailStoreController = new RetailStoreController();
 
 		// Scanner to read input from the console
 		Scanner scanner = new Scanner(System.in);
@@ -36,7 +36,7 @@ public class RetailStoreApp {
 
 		// Process the discount request
 		Response<String> discountResponse = new Response<>();
-		discountResponse = controller.processDiscount(customerType, totalAmount);
+		discountResponse = retailStoreController.processDiscount(customerType, totalAmount);
 		if (discountResponse.getStatusCode() == 200) {
 			System.out.println(discountResponse.getData());
 		} else {

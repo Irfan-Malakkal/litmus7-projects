@@ -30,7 +30,7 @@ public class VehicleController {
 	public static final int ERROR_CODE = 400;
 
 	// Service instance
-	private VehicleService service = new VehicleService();
+	private VehicleService vehicleService = new VehicleService();
 
 	/**
 	 * Loads vehicle data from a file.
@@ -43,7 +43,7 @@ public class VehicleController {
 		Response<String> response = new Response<>();
 		if (filePath != null) {
 			try {
-				response.setData(service.loadVehicles(filePath));
+				response.setData(vehicleService.loadVehicles(filePath));
 				response.setStatusCode(SUCCESS_CODE);
 			} catch (VehicleServiceException e) {
 				response.setStatusCode(ERROR_CODE);
@@ -66,7 +66,7 @@ public class VehicleController {
 	public Response<List<Vehicle>> getAllVehicles() {
 		Response<List<Vehicle>> response = new Response<>();
 		try {
-			response.setData(service.getAllVehicles());
+			response.setData(vehicleService.getAllVehicles());
 			response.setStatusCode(SUCCESS_CODE);
 		} catch (VehicleServiceException e) {
 			response.setErrorMessage(e.getMessage());
@@ -84,7 +84,7 @@ public class VehicleController {
 	public Response<List<Vehicle>> getAvailableVehicles() {
 		Response<List<Vehicle>> response = new Response<>();
 		try {
-			response.setData(service.getAvailableVehicles());
+			response.setData(vehicleService.getAvailableVehicles());
 			response.setStatusCode(SUCCESS_CODE);
 		} catch (VehicleServiceException e) {
 			response.setErrorMessage(e.getMessage());
@@ -106,7 +106,7 @@ public class VehicleController {
 	public Response<Vehicle> addCar(String brand, String model, double price, int doors, boolean isAuto) {
 		Response<Vehicle> response = new Response<>();
 		try {
-			response.setData(service.addVehicle(new Car(brand, model, price, doors, isAuto)));
+			response.setData(vehicleService.addVehicle(new Car(brand, model, price, doors, isAuto)));
 			response.setStatusCode(SUCCESS_CODE);
 		} catch (DuplicateVehicleException e) {
 			response.setErrorMessage("Cannot Add " + model + " : " + brand + e.getMessage());
@@ -128,7 +128,7 @@ public class VehicleController {
 	public Response<Vehicle> addBike(String brand, String model, double price, boolean hasGear, int engineCapacity) {
 		Response<Vehicle> response = new Response<>();
 		try {
-			response.setData(service.addVehicle(new Bike(brand, model, price, hasGear, engineCapacity)));
+			response.setData(vehicleService.addVehicle(new Bike(brand, model, price, hasGear, engineCapacity)));
 			response.setStatusCode(SUCCESS_CODE);
 		} catch (DuplicateVehicleException e) {
 			response.setErrorMessage("Cannot Add " + model + " : " + brand + e.getMessage());
@@ -149,7 +149,7 @@ public class VehicleController {
 		Response<Vehicle> response = new Response<>();
 		if (brand != null || model != null) {
 			try {
-				Vehicle vehicle = service.searchVehicles(brand, model);
+				Vehicle vehicle = vehicleService.searchVehicles(brand, model);
 				response.setData(vehicle);
 				response.setStatusCode(SUCCESS_CODE);
 			} catch (VehicleServiceException e) {
@@ -173,7 +173,7 @@ public class VehicleController {
 		Response<Vehicle> response = new Response<>();
 		if (vehicle != null) {
 			try {
-				Vehicle rentedVehicle = service.rentVehicle(vehicle);
+				Vehicle rentedVehicle = vehicleService.rentVehicle(vehicle);
 				response.setStatusCode(SUCCESS_CODE);
 				response.setData(rentedVehicle);
 			} catch (VehicleServiceException e) {
@@ -199,7 +199,7 @@ public class VehicleController {
 		Response<Vehicle> response = new Response<>();
 		if (vehicle != null) {
 			try {
-				Vehicle returnedVehicle = service.returnVehicle(vehicle);
+				Vehicle returnedVehicle = vehicleService.returnVehicle(vehicle);
 				response.setStatusCode(SUCCESS_CODE);
 				response.setData(returnedVehicle);
 			} catch (VehicleServiceException e) {

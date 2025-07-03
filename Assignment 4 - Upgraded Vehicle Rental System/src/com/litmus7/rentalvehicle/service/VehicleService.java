@@ -22,7 +22,7 @@ public class VehicleService {
 	private List<Vehicle> vehicles = new ArrayList<>();
 
 	//DAO used to interact with data layer.
-	private VehicleDAO dao = new VehicleDAO();
+	private VehicleDAO vehicleDao = new VehicleDAO();
 
 	/**
      * Loads vehicles from a specified file path using the DAO.
@@ -33,7 +33,7 @@ public class VehicleService {
      */
 	public String loadVehicles(String filePath) throws VehicleServiceException {
 		try {
-			vehicles = dao.loadVehiclesFromFile(filePath);
+			vehicles = vehicleDao.loadVehiclesFromFile(filePath);
 			return "Vehicles Loaded Successfully";
 		} catch (VehicleDataAccessException e) {
 			throw new VehicleServiceException("Cannot load" + filePath, e);
