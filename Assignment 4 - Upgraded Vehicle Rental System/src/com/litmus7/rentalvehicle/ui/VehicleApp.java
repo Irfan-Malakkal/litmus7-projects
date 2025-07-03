@@ -1,7 +1,6 @@
 package com.litmus7.rentalvehicle.ui;
 
 import java.util.List;
-import java.util.Scanner;
 
 import com.litmus7.rentalvehicle.controller.*;
 import com.litmus7.rentalvehicle.dto.*;
@@ -11,11 +10,11 @@ import com.litmus7.rentalvehicle.dto.*;
  * <p>
  * This class demonstrates how to:
  * <ul>
- *   <li>Load vehicles from a file</li>
- *   <li>Add new vehicles manually</li>
- *   <li>Search and rent a vehicle</li>
- *   <li>Return a rented vehicle</li>
- *   <li>Display all or available vehicles</li>
+ * <li>Load vehicles from a file</li>
+ * <li>Add new vehicles manually</li>
+ * <li>Search and rent a vehicle</li>
+ * <li>Return a rented vehicle</li>
+ * <li>Display all or available vehicles</li>
  * </ul>
  * All operations are performed using {@link VehicleController}.
  * </p>
@@ -24,12 +23,12 @@ import com.litmus7.rentalvehicle.dto.*;
  */
 public class VehicleApp {
 
-	 /**
-     * Prints a formatted list of vehicles or an error message if the response
-     * indicates a failure.
-     *
-     * @param response the response object
-     */
+	/**
+	 * Prints a formatted list of vehicles or an error message if the response
+	 * indicates a failure.
+	 *
+	 * @param response the response object
+	 */
 	private static void printVehicles(Response<List<Vehicle>> response) {
 
 		if (response.getStatusCode() == 200) {
@@ -57,9 +56,8 @@ public class VehicleApp {
 		// Instantiate the controller
 		VehicleController controller = new VehicleController();
 
-
-        // Response objects to hold results of various operations
-		Response<List<Vehicle>> loadVehicleResponse = new Response<>();
+		// Response objects to hold results of various operations
+		Response<String> loadVehicleResponse = new Response<>();
 		Response<Vehicle> addVehicleResponse = new Response<>();
 		Response<Vehicle> searchVehicleResponse = new Response<>();
 		Response<Vehicle> rentVehicleResponse = new Response<>();
@@ -69,7 +67,7 @@ public class VehicleApp {
 		System.out.println("Loading vehicles from file...\n");
 		loadVehicleResponse = controller.loadVehiclesFromFile("vehicles.txt");
 		if (loadVehicleResponse.getStatusCode() == 200) {
-			System.out.println("Vehicles Loaded Successfully");
+			System.out.println(loadVehicleResponse.getData());
 		} else {
 			System.out.println(loadVehicleResponse.getErrorMessage());
 		}
@@ -91,13 +89,11 @@ public class VehicleApp {
 		rentVehicleResponse = controller.rentVehicle(addVehicleResponse.getData());
 		System.out.println("Vehicle rented: " + rentVehicleResponse.getData());
 
-		// User input for renting another vehicle
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("\n--- Renting a vehicle(User Input) ---");
-		System.out.println("Enter Brand: ");
-		String brand = scanner.nextLine();
-		System.out.println("Enter String: ");
-		String model = scanner.nextLine();
+		// For renting another vehicle
+		System.out.println("\n--- Renting a vehicle(Search) ---");
+		String brand = "Toyota";
+		String model = "Corolla";
+		System.out.println("Brand : " + brand + "\nModel : " + model);
 
 		// Search and rent the specified vehicle
 		searchVehicleResponse = controller.searchVehicle(brand, model);
@@ -124,13 +120,10 @@ public class VehicleApp {
 		} else {
 			System.out.println(returnVehicleResponse.getErrorMessage());
 		}
-		
+
 		// Display available vehicles after returning
 		System.out.println("\n--- Available Vehicles After Returning ---");
 		printVehicles(controller.getAvailableVehicles());
-		
-		scanner.close();
 
 	}
-
 }

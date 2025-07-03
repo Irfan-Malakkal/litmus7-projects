@@ -31,10 +31,10 @@ public class VehicleService {
      * @return the list of loaded vehicles
      * @throws VehicleServiceException if the loading operation fails
      */
-	public List<Vehicle> loadVehicles(String filePath) throws VehicleServiceException {
+	public String loadVehicles(String filePath) throws VehicleServiceException {
 		try {
 			vehicles = dao.loadVehiclesFromFile(filePath);
-			return vehicles;
+			return "Vehicles Loaded Successfully";
 		} catch (VehicleDataAccessException e) {
 			throw new VehicleServiceException("Cannot load" + filePath, e);
 		}

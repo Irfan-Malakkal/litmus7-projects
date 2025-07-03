@@ -39,8 +39,8 @@ public class VehicleController {
 	 * @return a {@link Response} containing the list of loaded vehicles or an error
 	 *         message
 	 */
-	public Response<List<Vehicle>> loadVehiclesFromFile(String filePath) {
-		Response<List<Vehicle>> response = new Response<>();
+	public Response<String> loadVehiclesFromFile(String filePath) {
+		Response<String> response = new Response<>();
 		if (filePath != null) {
 			try {
 				response.setData(service.loadVehicles(filePath));
