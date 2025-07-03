@@ -1,4 +1,6 @@
-package com.litmus7.retaildiscount.dto;
+package com.litmus7.retaildiscount.model.impl;
+
+import com.litmus7.retaildiscount.model.Discountable;
 
 /**
  * Represents a regular customer who receives a flat discount rate.

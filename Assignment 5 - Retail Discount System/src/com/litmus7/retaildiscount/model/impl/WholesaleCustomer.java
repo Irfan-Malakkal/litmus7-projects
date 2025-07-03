@@ -1,4 +1,6 @@
-package com.litmus7.retaildiscount.dto;
+package com.litmus7.retaildiscount.model.impl;
+
+import com.litmus7.retaildiscount.model.Discountable;
 
 /**
  * Represents a wholesale customer eligible for tiered discount rates.

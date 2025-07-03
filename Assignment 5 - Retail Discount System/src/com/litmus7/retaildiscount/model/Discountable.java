@@ -1,4 +1,4 @@
-package com.litmus7.retaildiscount.dto;
+package com.litmus7.retaildiscount.model;
 
 /**
  * Interface representing a discount strategy for a customer type.

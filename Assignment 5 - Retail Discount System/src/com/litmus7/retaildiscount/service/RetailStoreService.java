@@ -1,10 +1,10 @@
 package com.litmus7.retaildiscount.service;
 
-import com.litmus7.retaildiscount.dto.Discountable;
-import com.litmus7.retaildiscount.dto.PremiumCustomer;
-import com.litmus7.retaildiscount.dto.RegularCustomer;
-import com.litmus7.retaildiscount.dto.WholesaleCustomer;
 import com.litmus7.retaildiscount.exceptions.RetailServiceException;
+import com.litmus7.retaildiscount.model.Discountable;
+import com.litmus7.retaildiscount.model.impl.PremiumCustomer;
+import com.litmus7.retaildiscount.model.impl.RegularCustomer;
+import com.litmus7.retaildiscount.model.impl.WholesaleCustomer;
 
 /**
  * Service class responsible for applying logic.
