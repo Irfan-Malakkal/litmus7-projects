@@ -1,4 +1,4 @@
-package com.litmus7.rentalvehicle.exceptions;
+package com.litmus7.rentalvehicle.exception;
 
 /**
  * Exception thrown when there is an issue accessing or processing vehicle data,

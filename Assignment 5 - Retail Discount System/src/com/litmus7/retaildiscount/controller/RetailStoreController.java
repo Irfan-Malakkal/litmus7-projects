@@ -1,7 +1,7 @@
 package com.litmus7.retaildiscount.controller;
 
 import com.litmus7.retaildiscount.dto.Response;
-import com.litmus7.retaildiscount.exceptions.RetailServiceException;
+import com.litmus7.retaildiscount.exception.RetailServiceException;
 import com.litmus7.retaildiscount.service.*;
 
 /**

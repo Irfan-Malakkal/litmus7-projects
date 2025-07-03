@@ -10,7 +10,7 @@ import java.util.List;
 import com.litmus7.rentalvehicle.dto.Bike;
 import com.litmus7.rentalvehicle.dto.Car;
 import com.litmus7.rentalvehicle.dto.Vehicle;
-import com.litmus7.rentalvehicle.exceptions.*;
+import com.litmus7.rentalvehicle.exception.*;
 
 
 /**

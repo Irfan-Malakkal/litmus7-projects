@@ -3,8 +3,8 @@ package com.litmus7.rentalvehicle.controller;
 import java.util.List;
 
 import com.litmus7.rentalvehicle.dto.*;
-import com.litmus7.rentalvehicle.exceptions.DuplicateVehicleException;
-import com.litmus7.rentalvehicle.exceptions.VehicleServiceException;
+import com.litmus7.rentalvehicle.exception.DuplicateVehicleException;
+import com.litmus7.rentalvehicle.exception.VehicleServiceException;
 import com.litmus7.rentalvehicle.service.*;
 
 /**

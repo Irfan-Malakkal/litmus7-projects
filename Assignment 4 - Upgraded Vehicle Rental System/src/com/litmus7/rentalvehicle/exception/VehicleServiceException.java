@@ -1,4 +1,4 @@
-package com.litmus7.rentalvehicle.exceptions;
+package com.litmus7.rentalvehicle.exception;
 
 /**
  * Exception thrown when a service-level error occurs in the vehicle rental application.

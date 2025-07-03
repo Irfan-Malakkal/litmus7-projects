@@ -1,6 +1,6 @@
 package com.litmus7.retaildiscount.service;
 
-import com.litmus7.retaildiscount.exceptions.RetailServiceException;
+import com.litmus7.retaildiscount.exception.RetailServiceException;
 import com.litmus7.retaildiscount.model.Discountable;
 import com.litmus7.retaildiscount.model.impl.PremiumCustomer;
 import com.litmus7.retaildiscount.model.impl.RegularCustomer;

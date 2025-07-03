@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.litmus7.rentalvehicle.dao.*;
 import com.litmus7.rentalvehicle.dto.*;
-import com.litmus7.rentalvehicle.exceptions.*;
+import com.litmus7.rentalvehicle.exception.*;
 
 /**
  * Service class that manages a list of vehicles for rental operations.
