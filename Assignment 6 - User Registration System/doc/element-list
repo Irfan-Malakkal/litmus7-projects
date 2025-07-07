@@ -1,0 +1,7 @@
+com.litmus7.userregistration.controller
+com.litmus7.userregistration.dao
+com.litmus7.userregistration.dto
+com.litmus7.userregistration.exception
+com.litmus7.userregistration.service
+com.litmus7.userregistration.ui
+com.litmus7.userregistration.util
