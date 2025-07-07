@@ -6,8 +6,33 @@ import com.litmus7.userregistration.controller.UserRegistrationController;
 import com.litmus7.userregistration.dto.Response;
 import com.litmus7.userregistration.dto.User;
 
+/**
+ * Console-based application for registering users.
+ * 
+ * <p>
+ * This class provides a simple command-line interface that prompts the user to
+ * input username, age, email, and password, then delegates registration to
+ * {@link UserRegistrationController}.
+ * </p>
+ * 
+ * <p>
+ * It displays the registration result or error messages accordingly.
+ * </p>
+ * 
+ * @author Muhammed Irfan
+ */
 public class RegistrationApp {
 
+	/**
+	 * The entry point of the application.
+	 * 
+	 * <p>
+	 * Reads user input from the console for registration details, calls the
+	 * controller to perform registration, and prints the result.
+	 * </p>
+	 * 
+	 * @param args command-line arguments (not used)
+	 */
 	public static void main(String[] args) {
 
 		UserRegistrationController userRegistrationController = new UserRegistrationController();
