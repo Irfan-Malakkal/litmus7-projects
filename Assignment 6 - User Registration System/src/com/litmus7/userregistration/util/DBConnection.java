@@ -53,9 +53,9 @@ public class DBConnection {
 			return DriverManager.getConnection(url, username, password);
 
 		} catch (FileNotFoundException e) {
-			throw new DBConnectionException("Couldn't load file", e);
+			throw new DBConnectionException("Couldn't load Properties file", e);
 		} catch (IOException e) {
-			throw new DBConnectionException("Couldn't load file", e);
+			throw new DBConnectionException("Couldn't load Properties file", e);
 		} catch (SQLException e) {
 			throw new DBConnectionException("Couldn't connect to Database", e);
 		}
