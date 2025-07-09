@@ -5,6 +5,8 @@ import com.litmus7.userregistration.dto.User;
 import com.litmus7.userregistration.exception.UserRegistrationServiceException;
 import com.litmus7.userregistration.service.UserRegistrationService;
 
+import static com.litmus7.userregistration.constant.ResponseConstants.*;
+
 /**
  * Controller class responsible for handling user registration requests. It
  * validates the input data and delegates the registration process to the
@@ -14,15 +16,6 @@ import com.litmus7.userregistration.service.UserRegistrationService;
  * @author Muhammed Irfan
  */
 public class UserRegistrationController {
-
-	/**
-	 * Status code representing a successful operation.
-	 */
-	public static final int SUCCESS_CODE = 200;
-	/**
-	 * Status code representing a failed or erroneous operation.
-	 */
-	public static final int ERROR_CODE = 400;
 
 	// Service layer instance
 	private UserRegistrationService userRegistrationService = new UserRegistrationService();
@@ -40,7 +33,7 @@ public class UserRegistrationController {
 	 */
 	public Response<User> registerUser(String username, int age, String email, String password) {
 		Response<User> response = new Response<>();
-		if (username == null || email == null || password == null || age <= 0) {
+		if (username == null || email == null || password == null) {
 			response.setErrorMessage("Invalid value for parameters");
 			response.setStatusCode(ERROR_CODE);
 		} else {

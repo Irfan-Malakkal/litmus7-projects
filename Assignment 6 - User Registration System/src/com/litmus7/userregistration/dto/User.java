@@ -20,6 +20,7 @@ package com.litmus7.userregistration.dto;
 public class User {
 
 	// Instance variables
+	private int id;
 	private String username;
 	private int age;
 	private String email;
@@ -39,6 +40,20 @@ public class User {
 		this.age = age;
 		this.email = email;
 		this.password = password;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
@@ -104,7 +119,7 @@ public class User {
 	 */
 	@Override
 	public String toString() {
-		return "-----------\nUser Details\n-----------\nUsername : " + username + ",\nAge : " + age + ",\nEmail : "
+		return "-----------\nUser Details\n-----------\nId : " + id + "\nUsername : " + username + ",\nAge : " + age + ",\nEmail : "
 				+ email;
 	}
 

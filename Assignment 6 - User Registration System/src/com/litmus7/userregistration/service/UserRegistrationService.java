@@ -4,6 +4,8 @@ import com.litmus7.userregistration.dao.UserDAO;
 import com.litmus7.userregistration.dto.User;
 import com.litmus7.userregistration.exception.*;
 
+import static com.litmus7.userregistration.util.UserInputValidation.*;
+
 /**
  * Service class responsible for handling business logic related to user
  * registration.
@@ -26,7 +28,7 @@ public class UserRegistrationService {
 	 * 
 	 * <p>
 	 * If any validation fails, or if saving the user to the database fails, this
-	 * method throws a {@link UserRegistrationServiceException} encapsulating the
+	 * method throws a {@link UserRegistrationServiceException} wrapping the
 	 * original cause.
 	 * </p>
 	 * 
@@ -42,22 +44,26 @@ public class UserRegistrationService {
 			throws UserRegistrationServiceException {
 
 		try {
-			if (username.trim().isEmpty()) {
+			if (!isValdUsername(username)) {
 				throw new IllegalArgumentException("Username cannot be empty");
 			}
-			if (age < 18 || age > 60) {
+			if (!isValidAge(age)) {
 				throw new InvalidAgeException("Age must be between 18 and 60.");
 			}
-			if (!email.contains("@") || !email.contains(".")) {
-				throw new InvalidEmailException("Invalid email format. Must contain '@' and '.'.");
+			if (!isValidEmail(email)) {
+				throw new InvalidEmailException("Invalid email format.");
 			}
-			if (password.length() < 6) {
+			if (!isValidPassword(password)) {
 				throw new WeakPasswordException("Password too weak. Must be at least 6 characters.");
+			}
+			if (userDAO.getUserByUsername(username) != null) {
+				throw new IllegalArgumentException("Username already exist");
 			}
 
 			User user = new User(username, age, email, password);
-			userDAO.saveUser(user);
-			return user;
+			User registeredUser = userDAO.saveUser(user);
+
+			return registeredUser;
 
 		} catch (IllegalArgumentException | InvalidAgeException | InvalidEmailException | WeakPasswordException
 				| UserDataAccessException e) {

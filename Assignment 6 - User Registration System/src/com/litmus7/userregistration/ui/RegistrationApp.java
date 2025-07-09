@@ -6,6 +6,8 @@ import com.litmus7.userregistration.controller.UserRegistrationController;
 import com.litmus7.userregistration.dto.Response;
 import com.litmus7.userregistration.dto.User;
 
+import static com.litmus7.userregistration.constant.ResponseConstants.*;
+
 /**
  * Console-based application for registering users.
  * 
@@ -54,7 +56,7 @@ public class RegistrationApp {
 		String password = scanner.nextLine();
 
 		registrationResponse = userRegistrationController.registerUser(username, age, email, password);
-		if (registrationResponse.getStatusCode() == 200) {
+		if (registrationResponse.getStatusCode() == SUCCESS_CODE) {
 			System.out.println(registrationResponse.getData());
 		} else {
 			System.out.println(registrationResponse.getErrorMessage());
