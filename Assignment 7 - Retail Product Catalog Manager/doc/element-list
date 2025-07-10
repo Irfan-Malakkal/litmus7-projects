@@ -1,0 +1,9 @@
+com.litmus7.retailproductcatalog.app
+com.litmus7.retailproductcatalog.constant
+com.litmus7.retailproductcatalog.controller
+com.litmus7.retailproductcatalog.dao
+com.litmus7.retailproductcatalog.dao.impl
+com.litmus7.retailproductcatalog.dto
+com.litmus7.retailproductcatalog.exception
+com.litmus7.retailproductcatalog.service
+com.litmus7.retailproductcatalog.util
